@@ -10,4 +10,6 @@ public interface StudentService {
     Student getStudentByRoll(int roll);
 
     void saveStudent(Student student);
+
+    void updateStudent(Student student, int roll);
 }

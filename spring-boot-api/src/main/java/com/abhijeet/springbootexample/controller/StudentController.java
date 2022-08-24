@@ -29,5 +29,10 @@ public class StudentController {
         return studentService.getStudentByRoll(roll);
     }
 
+    @PutMapping("/students/{roll}")
+    public void updateStudent(@RequestBody Student student ,@PathVariable("roll") int roll){
+        studentService.updateStudent(student,roll);
+    }
+
 
 }

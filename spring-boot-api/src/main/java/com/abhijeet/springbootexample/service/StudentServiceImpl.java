@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -26,5 +27,24 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void saveStudent(Student student) {
         studentRepository.save(student);
+    }
+
+    @Override
+    public void updateStudent(Student student, int roll) {
+
+        Student byRoll = studentRepository.findByRoll(roll);
+        if(byRoll!=null){
+            if(Objects.nonNull(student.getName()) && !"".equalsIgnoreCase(student.getName())){
+                byRoll.setName(student.getName());
+            }
+            if(Objects.nonNull(student.getRegistrationNumber()) && student.getRegistrationNumber() != 0){
+                byRoll.setRegistrationNumber(student.getRegistrationNumber());
+            }
+            if(Objects.nonNull(student.getRoll()) && student.getRegistrationNumber() != 0){
+                byRoll.setRoll(student.getRoll());
+            }
+            studentRepository.save(byRoll);
+        }
+
     }
 }
