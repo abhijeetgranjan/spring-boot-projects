@@ -31,12 +31,12 @@ public class StudentController {
         return studentService.getStudentByRoll(roll);
     }
 
-    @PutMapping("/students/{roll}")
+    @PutMapping("/students/roll/{roll}")
     public void updateStudent(@RequestBody Student student ,@PathVariable("roll") int roll){
         studentService.updateStudent(student,roll);
     }
 
-    @DeleteMapping("/students/{roll}")
+    @DeleteMapping("/students/roll/{roll}")
     @Transactional
     public void deleteStudent(@PathVariable("roll") int roll){
         studentService.deleteStudent(roll);
