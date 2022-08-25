@@ -1,7 +1,9 @@
 
 Endpoints 
 
-GET:  localhost:8080/api/ping
-POST: localhost:8080/api/students
-GET:  localhost:8080/api/students
-GET:  localhost:8080/api/student/roll/1205330
+<br>GET:  localhost:8080/api/ping</br>   --> To find out the status of services 
+<br>POST: localhost:8080/api/students</br> --> To save the student
+<br>GET:  localhost:8080/api/students</br> --> to get all the students 
+<br>GET:  localhost:8080/api/student/roll/{roll}</br> --> To get a particular student by roll
+<br>PUT:  localhost:8080/api/students/roll/{roll}</br> --> TO update a student detail using roll
+<br>DELETE: localhost:8080/api/students/roll/{roll}</br> --> To delete a student detail using roll
