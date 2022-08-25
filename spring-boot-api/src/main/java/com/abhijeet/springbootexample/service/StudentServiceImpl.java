@@ -33,34 +33,39 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void saveStudent(Student student) {
+    public Student saveStudent(Student student) {
         LOGGER.info("save student begins");
-        studentRepository.save(student);
+        Student save = studentRepository.save(student);
+        return save;
     }
 
     @Override
-    public void updateStudent(Student student, int roll) {
+    public Student updateStudent(Student student, int roll) {
         LOGGER.info("update student begins");
         Student byRoll = studentRepository.findByRoll(roll);
-        if(byRoll!=null){
-            LOGGER.info(" the student with roll "+ roll+" exists");
-            if(Objects.nonNull(student.getName()) && !"".equalsIgnoreCase(student.getName())){
+        if (byRoll != null) {
+            LOGGER.info(" the student with roll " + roll + " exists");
+            if (Objects.nonNull(student.getName()) && !"".equalsIgnoreCase(student.getName())) {
                 byRoll.setName(student.getName());
             }
-            if(Objects.nonNull(student.getRegistrationNumber()) && student.getRegistrationNumber() != 0){
+            if (Objects.nonNull(student.getRegistrationNumber()) && student.getRegistrationNumber() != 0) {
                 byRoll.setRegistrationNumber(student.getRegistrationNumber());
             }
-            if(Objects.nonNull(student.getRoll()) && student.getRegistrationNumber() != 0){
+            if (Objects.nonNull(student.getRoll()) && student.getRegistrationNumber() != 0) {
                 byRoll.setRoll(student.getRoll());
             }
-            studentRepository.save(byRoll);
+            return studentRepository.save(byRoll);
+        } else {
+            LOGGER.info(" the student with roll " + roll + " doesn't exist");
         }
-        LOGGER.info(" the student with roll "+ roll+" doesn't exist");
+
+        return null;
     }
 
     @Override
-    public void deleteStudent(int roll) {
+    public int deleteStudent(int roll) {
         LOGGER.info(" deleting the record of student begins");
-        studentRepository.deleteByRoll(roll);
+        return studentRepository.deleteByRoll(roll);
+
     }
 }

@@ -9,7 +9,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 
     Student findByRoll(int roll);
 
-    void deleteByRoll(int roll);
+    int deleteByRoll(int roll);
 
 
 }

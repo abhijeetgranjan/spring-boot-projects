@@ -9,9 +9,9 @@ public interface StudentService {
 
     Student getStudentByRoll(int roll);
 
-    void saveStudent(Student student);
+    Student  saveStudent(Student student);
 
-    void updateStudent(Student student, int roll);
+    Student updateStudent(Student student, int roll);
 
-    void deleteStudent(int roll);
+    int deleteStudent(int roll);
 }
