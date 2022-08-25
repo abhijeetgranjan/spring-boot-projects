@@ -19,6 +19,13 @@ spring:
 
 welcome:
   message: "Student Service is Up and Running"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: env, beans
 ---
 
 spring:
