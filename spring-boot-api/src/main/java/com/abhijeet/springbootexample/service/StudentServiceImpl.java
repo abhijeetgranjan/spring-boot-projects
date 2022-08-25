@@ -47,4 +47,9 @@ public class StudentServiceImpl implements StudentService {
         }
 
     }
+
+    @Override
+    public void deleteStudent(int roll) {
+        studentRepository.deleteByRoll(roll);
+    }
 }

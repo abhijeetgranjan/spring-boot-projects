@@ -3,7 +3,9 @@ package com.abhijeet.springbootexample.controller;
 import com.abhijeet.springbootexample.entity.Student;
 import com.abhijeet.springbootexample.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -33,6 +35,13 @@ public class StudentController {
     public void updateStudent(@RequestBody Student student ,@PathVariable("roll") int roll){
         studentService.updateStudent(student,roll);
     }
+
+    @DeleteMapping("/students/{roll}")
+    @Transactional
+    public void deleteStudent(@PathVariable("roll") int roll){
+        studentService.deleteStudent(roll);
+    }
+
 
 
 }
