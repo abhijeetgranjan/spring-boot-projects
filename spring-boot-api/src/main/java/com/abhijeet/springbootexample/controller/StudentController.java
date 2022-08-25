@@ -1,6 +1,7 @@
 package com.abhijeet.springbootexample.controller;
 
 import com.abhijeet.springbootexample.entity.Student;
+import com.abhijeet.springbootexample.error.InvalidDataException;
 import com.abhijeet.springbootexample.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -32,7 +33,8 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public ResponseEntity<String> saveStudent(@Valid @RequestBody Student student, BindingResult errors) {
+    public ResponseEntity<String> saveStudent(@Valid @RequestBody Student student, BindingResult errors)
+            throws InvalidDataException {
 
         try {
             if (errors.hasErrors()) {
@@ -47,6 +49,7 @@ public class StudentController {
 
         }catch (Exception e){
             LOGGER.info(" exception caught in saveStudent");
+            throw new InvalidDataException(e.toString());
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(" Please check the request ");
     }
