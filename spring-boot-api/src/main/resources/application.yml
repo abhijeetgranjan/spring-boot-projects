@@ -1,0 +1,37 @@
+spring:
+  profiles:
+    active: dev
+
+
+---
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3306/dbo
+    username: root
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+welcome:
+  message: "Student Service is Up and Running"
+---
+
+spring:
+  profiles: qa
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3306/dbo
+    username: root
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+welcome:
+  message: "Student Service is Up and Running for QA"
