@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
@@ -14,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(InvalidDataException.class)
-    public ResponseEntity<Error> invalidDataInRequest (InvalidDataException exception) {
+    public ResponseEntity<Error> invalidDataInRequest(InvalidDataException exception) {
         Error message = new Error(HttpStatus.BAD_REQUEST,
                 "Please check the input parameters");
 
