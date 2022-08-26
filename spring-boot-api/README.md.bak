@@ -1,9 +1,13 @@
 
 Endpoints 
 
-<br>GET:  localhost:8080/api/ping</br>   --> To find out the status of services 
-<br>POST: localhost:8080/api/students</br> --> To save the student
-<br>GET:  localhost:8080/api/students</br> --> to get all the students 
-<br>GET:  localhost:8080/api/student/roll/{roll}</br> --> To get a particular student by roll
-<br>PUT:  localhost:8080/api/students/roll/{roll}</br> --> TO update a student detail using roll
-<br>DELETE: localhost:8080/api/students/roll/{roll}</br> --> To delete a student detail using roll
+<br>GET:  localhost:8080/api/ping   --> To find out the status of services </br>
+<br>POST: localhost:8080/api/students --> To save the student </br>
+<br>GET:  localhost:8080/api/students --> to get all the students </br>
+<br>GET:  localhost:8080/api/student/roll/{roll} --> To get a particular student by roll</br>
+<br>PUT:  localhost:8080/api/students/roll/{roll} --> TO update a student detail using roll</br>
+<br>DELETE: localhost:8080/api/students/roll/{roll} --> To delete a student detail using roll</br>
+
+<br>
+<br>
+Actuators  http://localhost:8080/actuator </br>
