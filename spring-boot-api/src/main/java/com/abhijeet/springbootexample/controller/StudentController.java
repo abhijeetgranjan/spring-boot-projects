@@ -59,7 +59,7 @@ public class StudentController {
         LOGGER.info(" getStudentByRoll method invoked for roll "+roll);
         Student studentByRoll = studentService.getStudentByRoll(roll);
         if(studentByRoll!=null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(studentByRoll);
+            return ResponseEntity.status(HttpStatus.OK).body(studentByRoll);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student with roll "+ roll+" doesn't exist");
 
