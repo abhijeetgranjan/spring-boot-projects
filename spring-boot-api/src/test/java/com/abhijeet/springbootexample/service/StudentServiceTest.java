@@ -26,8 +26,8 @@ class StudentServiceTest {
 
     @BeforeEach
     void setUp() {
-        Student student1 = Student.builder().name("Abhijeet").roll(1205330).registrationNumber(121).build();
-        Student student2 = Student.builder().name("Ranjan").roll(1205331).registrationNumber(122).build();
+        Student student1 = Student.builder().id(1).name("Abhijeet").roll(1205330).registrationNumber(121).build();
+        Student student2 = Student.builder().id(2).name("Ranjan").roll(1205331).registrationNumber(122).build();
         List<Student> students = Arrays.asList(student1, student2);
         Mockito.when(studentRepository.findAll()).thenReturn(students);
 
