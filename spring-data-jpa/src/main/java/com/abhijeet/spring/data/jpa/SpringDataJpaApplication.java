@@ -12,8 +12,8 @@ public class SpringDataJpaApplication {
         ConfigurableApplicationContext run = SpringApplication.run(SpringDataJpaApplication.class, args);
         Mappings bean = run.getBean(Mappings.class);
         //bean.saveOneToOneMapping();
-
-        bean.saveOneToManyMapping();
+        //bean.saveOneToManyMapping();
+        bean.saveManyToOneMapping();
 
     }
 

@@ -26,9 +26,9 @@ public class Department {
     @Column(name = "departmentName")
     private String departmentName;
 
-    @OneToMany(cascade = CascadeType.ALL)
+   /* @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "departmentId", referencedColumnName = "departmentId")
-    private List<Employee> employeeList;
+    private List<Employee> employeeList;*/
 
 }
 

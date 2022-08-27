@@ -31,8 +31,12 @@ public class Employee {
     @Column(name = "employeeMail")
     private String employeeMail;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn( name = "accountId", referencedColumnName = "accountId")
     private Account account;
+
+    @ManyToOne()
+    @JoinColumn(name = "departmentId", referencedColumnName = "departmentId")
+    private Department department;
 
 }
