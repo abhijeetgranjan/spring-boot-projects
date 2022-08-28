@@ -3,6 +3,7 @@ package com.abhijeet.spring.data.jpa.onetoone;
 import com.abhijeet.spring.data.jpa.entity.Account;
 import com.abhijeet.spring.data.jpa.entity.Department;
 import com.abhijeet.spring.data.jpa.entity.Employee;
+import com.abhijeet.spring.data.jpa.entity.Speciality;
 import com.abhijeet.spring.data.jpa.repository.AccountRepository;
 import com.abhijeet.spring.data.jpa.repository.DepartmentRepository;
 import com.abhijeet.spring.data.jpa.repository.EmployeeRepository;
@@ -26,15 +27,16 @@ public class Mappings {
     private AccountRepository accountRepository;
 
 
+
     public void saveOneToOneMapping() {
         Account account123 = Account.builder().accountNumber(6).bankName("AXIS").build();
         Employee qwerty = Employee.builder().employeeName("port").employeeMail("ab@a.com").account(account123).build();
 
-        accountRepository.save(account123);
+
         employeeRepository.save(qwerty);
     }
 
-   /* public void saveOneToManyMapping(){
+    public void saveOneToManyMapping(){
 
         Employee a = Employee.builder().employeeName("a").employeeMail("ab@a.com").build();
         Employee b = Employee.builder().employeeName("b").employeeMail("ab@a.com").build();
@@ -44,14 +46,14 @@ public class Mappings {
         List<Employee> atciList = Arrays.asList(a,b);
         List<Employee> hrList = Arrays.asList(c,d);
 
-        //Department atci = Department.builder().departmentName("ATCI").employeeList(atciList).build();
+        Department atci = Department.builder().departmentName("ATCI").employeeList(atciList).build();
         Department hr = Department.builder().departmentName("hr").employeeList(hrList).build();
 
         departmentRepository.save(atci);
         departmentRepository.save(hr);
-    }*/
+    }
 
-    public void saveManyToOneMapping(){
+    /*public void saveManyToOneMapping(){
         Department operations = Department.builder().departmentName("operations").build();
         Department pmo = Department.builder().departmentName("pmo").build();
 
@@ -72,6 +74,24 @@ public class Mappings {
         employeeRepository.save(bhavesh);
         employeeRepository.save(chandu);
         employeeRepository.save(dullu);
+    }*/
+
+    public void addManyToManyMappings(){
+
+        Speciality java = Speciality.builder().stream("JAVA").build();
+        Speciality spring = Speciality.builder().stream("Spring").build();
+
+        Account canara = Account.builder().accountNumber(6).bankName("CANARA").build();
+
+
+        Employee arpit = Employee.builder().employeeName("ARPIT").employeeMail("ab@a.com").account(canara).build();
+        arpit.addSpeciality(java);
+        arpit.addSpeciality(spring);
+
+        employeeRepository.save(arpit);
+
+
+
     }
 
 }

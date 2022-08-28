@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -31,12 +33,28 @@ public class Employee {
     @Column(name = "employeeMail")
     private String employeeMail;
 
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn( name = "accountId", referencedColumnName = "accountId")
     private Account account;
 
-    @ManyToOne()
+    /*@ManyToOne()
     @JoinColumn(name = "departmentId", referencedColumnName = "departmentId")
-    private Department department;
+    private Department department;*/
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="employee_speciality_mapping",
+    joinColumns =@JoinColumn(name = "employeeId", referencedColumnName = "employeeId"),
+            inverseJoinColumns = @JoinColumn(name = "specialityId" ,referencedColumnName = "specialityId")
+
+    )
+    private List<Speciality> specialities;
+
+    public void addSpeciality(Speciality speciality){
+        if(specialities==null){
+            specialities = new ArrayList<>();
+        }
+        specialities.add(speciality);
+    }
+
 
 }

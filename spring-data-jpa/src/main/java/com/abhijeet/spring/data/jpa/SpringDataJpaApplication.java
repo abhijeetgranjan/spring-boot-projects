@@ -13,7 +13,8 @@ public class SpringDataJpaApplication {
         Mappings bean = run.getBean(Mappings.class);
         //bean.saveOneToOneMapping();
         //bean.saveOneToManyMapping();
-        bean.saveManyToOneMapping();
+        //bean.saveManyToOneMapping();
+        bean.addManyToManyMappings();
 
     }
 
