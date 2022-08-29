@@ -13,4 +13,5 @@ public class ResponseTemplateVO {
 
     private Student student;
     private Course course;
+    private String errorMessage;
 }

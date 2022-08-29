@@ -4,6 +4,7 @@ import com.abhijeet.student.service.VO.Course;
 import com.abhijeet.student.service.VO.ResponseTemplateVO;
 import com.abhijeet.student.service.entity.Student;
 import com.abhijeet.student.service.repository.StudentRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @CircuitBreaker(name = "studentWithCourse" , fallbackMethod ="getFallbackForStudentWithCourse" )
     public ResponseTemplateVO getStudentWithCourse(int id) {
         log.info("inside getStudentWithCourse");
         ResponseTemplateVO vo = new ResponseTemplateVO();
@@ -38,5 +40,11 @@ public class StudentServiceImpl implements StudentService {
         vo.setCourse(forObject);
         return vo;
 
+    }
+
+    public ResponseTemplateVO getFallbackForStudentWithCourse(Exception e){
+        ResponseTemplateVO vo = new ResponseTemplateVO();
+        vo.setErrorMessage("COURSE-SERVICE is down");
+        return vo;
     }
 }
