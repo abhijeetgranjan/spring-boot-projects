@@ -32,7 +32,7 @@ public class StudentServiceImpl implements StudentService {
         ResponseTemplateVO vo = new ResponseTemplateVO();
         Optional<Student> byId = studentRepository.findById(id);
         log.info("student details fetched ");
-        Course forObject = restTemplate.getForObject("http://localhost:9001/api/course/1", Course.class);
+        Course forObject = restTemplate.getForObject("http://COURSE-SERVICE/api/course/1", Course.class);
         log.info("course  details fetched ");
         vo.setStudent(byId.get());
         vo.setCourse(forObject);
