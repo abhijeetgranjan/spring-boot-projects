@@ -41,7 +41,7 @@ public class Employee {
     @JoinColumn(name = "departmentId", referencedColumnName = "departmentId")
     private Department department;*/
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name="employee_speciality_mapping",
     joinColumns =@JoinColumn(name = "employeeId", referencedColumnName = "employeeId"),
             inverseJoinColumns = @JoinColumn(name = "specialityId" ,referencedColumnName = "specialityId")
