@@ -20,6 +20,6 @@ This is collection of  spring-boot-projects
 	
    4.) spring-boot-file-systems: This is a spring boot project which lets user upload a file into database and download the same. <br>
 	
-   5.) spring-boot-excel-to-database: This is a project in which user can upload a data from Excel to database using Apache 
+   5.) spring-boot-excel-to-database: This is a project in which user can upload a data from Excel to database using Apache poi-ooxml
 					 
 					 
