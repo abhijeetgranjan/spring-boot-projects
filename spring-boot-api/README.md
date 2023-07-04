@@ -9,6 +9,7 @@ EndPoints
 <br>PUT:  localhost:8080/api/students/roll/{roll} --> TO update a student detail using roll</br>
 <br>DELETE: localhost:8080/api/students/roll/{roll} --> To delete a student detail using roll</br>
 <br>Actuators  http://localhost:8080/actuator </br>
+<br>Swagger: localhost:8080/swagger-ui/index.html  --> documentation of API's 
 
 
 <br> Test Cases </br> 
