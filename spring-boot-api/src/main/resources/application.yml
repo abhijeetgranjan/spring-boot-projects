@@ -5,7 +5,9 @@ spring:
 
 ---
 spring:
-  profiles: dev
+  config:
+    activate:
+      on-profile: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: root
@@ -16,6 +18,10 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
+  security:
+    user:
+      name: dev-user
+      password: dev-password
 
 welcome:
   message: "Student Service is Up and Running"
@@ -40,5 +46,9 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
+  security:
+    user:
+      name: qa-user
+      password: qa-password
 welcome:
   message: "Student Service is Up and Running for QA"
