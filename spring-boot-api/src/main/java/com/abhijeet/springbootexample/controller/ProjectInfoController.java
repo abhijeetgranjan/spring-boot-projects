@@ -22,7 +22,7 @@ public class ProjectInfoController {
     public String getProjectStatus(){
 
         return
-            "the active profile is" + activeProfile + "\n"+ welcomeMessage;
+            "the active profile is  " + activeProfile + "\n"+ welcomeMessage;
     }
 
 
