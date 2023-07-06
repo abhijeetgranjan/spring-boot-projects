@@ -19,6 +19,8 @@ Versioning
 <br>Header Versioning: localhost:8081/api/ping &nbsp; &nbsp;[{"key":"X-API-VERSION","value":"1"}] 
 <br>Media Versioning: localhost:8081/api/ping &nbsp;&nbsp;    [{"key":"Accept" ,"value":"application/vnd.company.app-v1+json"}]
 
+<br>HATEOAS stands for Hypermedia as the Engine of Application State <br>
+
 <br>
 <br> Test Cases 
 
