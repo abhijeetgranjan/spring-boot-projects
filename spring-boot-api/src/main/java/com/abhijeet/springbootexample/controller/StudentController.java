@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/api")
@@ -38,7 +43,7 @@ public class StudentController {
 
         try {
             if (errors.hasErrors()) {
-                throw new RuntimeException(errors.toString()) ;
+                throw new RuntimeException(errors.toString());
             }
 
             LOGGER.info(" saveStudent method invoked ");
@@ -47,7 +52,7 @@ public class StudentController {
                 return ResponseEntity.status(HttpStatus.OK).body("Data is saved");
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             LOGGER.info(" exception caught in saveStudent");
             throw new InvalidDataException(e.toString());
         }
@@ -56,12 +61,16 @@ public class StudentController {
 
     @GetMapping("/student/roll/{roll}")
     public ResponseEntity<Object> getStudentByRoll(@PathVariable("roll") int roll) {
-        LOGGER.info(" getStudentByRoll method invoked for roll "+roll);
+        LOGGER.info(" getStudentByRoll method invoked for roll " + roll);
         Student studentByRoll = studentService.getStudentByRoll(roll);
-        if(studentByRoll!=null) {
-            return ResponseEntity.status(HttpStatus.OK).body(studentByRoll);
+        //implementing hateoas
+        if (studentByRoll != null) {
+            EntityModel<Student> studentEntityModel = EntityModel.of(studentByRoll);
+            WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).getAllStudents());
+            studentEntityModel.add(link.withRel("all-students"));
+            return ResponseEntity.status(HttpStatus.OK).body(studentEntityModel);
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student with roll "+ roll+" doesn't exist");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student with roll " + roll + " doesn't exist");
 
     }
 
@@ -69,7 +78,7 @@ public class StudentController {
     public ResponseEntity<String> updateStudent(@RequestBody Student student, @PathVariable("roll") int roll) {
         LOGGER.info(" updateStudent method invoked  for student with roll" + roll);
         Student updatedStudent = studentService.updateStudent(student, roll);
-        if(updatedStudent!=null){
+        if (updatedStudent != null) {
             return ResponseEntity.status(HttpStatus.OK).body("updated the student details");
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("error in updating the student details");
@@ -80,7 +89,7 @@ public class StudentController {
     public ResponseEntity<String> deleteStudent(@PathVariable("roll") int roll) {
         LOGGER.info(" deleteStudent method invoked  with roll" + roll);
         int i = studentService.deleteStudent(roll);
-        if(i>0){
+        if (i > 0) {
             return ResponseEntity.status(HttpStatus.OK).body("deleted  the student record");
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please check the roll");
